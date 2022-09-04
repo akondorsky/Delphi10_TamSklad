@@ -1,0 +1,25 @@
+select a.*,
+b.dt_out,
+b.custproc,
+b.kol as kol_out,
+b.kol_edizm as edizm_out,
+b.weight_vol as weight_out,
+b.weight_edizm as edizm1_out,
+b.stoim as stoim_out,
+b.n_decl as gtd_out,
+c.n_doc as doc_sold,
+c.date_doc as date_sold,
+c.owner,c.kol as kol_sold,
+c.kol_edizm as edizm_sold,
+c.weight_vol as weight_sold,
+c.weight_edizm as edizm1_sold,
+c.stoim as stoim_sold,
+d.nomer_dt as n_decl,
+(a.kol - b.kol) as rest_kol,
+(a.weight_vol - b.weight_vol) as rest_weight,
+(a.stoim - b.stoim) as rest_stoim
+from goods_head a
+left join goods_out b on a.id = b.id_head
+left join goods_sold c on a.id = c.id_head
+left join decls d on a.id_decl = d.id
+order by a.id
