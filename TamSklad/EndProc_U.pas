@@ -78,8 +78,9 @@ begin
         if not DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.StartTransaction;
         DM.Sql.Close;
         DM.Sql.SQL.Clear;
-        DM.Sql.SQL.Add('insert into goods_out (dt_out,id_head,custproc,kol,kol_edizm,weight_vol,weight_edizm,stoim,n_decl,n_goods,custproc_code,kol_edizm_code) ');
-        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:p11) ');
+        DM.Sql.SQL.Add('insert into goods_out (dt_out,id_head,custproc,kol,kol_edizm,weight_vol, ');
+        DM.Sql.SQL.Add(' weight_edizm,stoim,n_decl,n_goods,custproc_code,kol_edizm_code,name_goods_out,tnved_out )' );
+        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:p11,:p12,:p13) ');
         DM.Sql.Params[0].Value:=E_Dt.Value;
         DM.Sql.Params[1].AsInteger:=i;
         DM.Sql.Params[2].AsString:=E_Proc.Text;
@@ -95,6 +96,8 @@ begin
            else
             DM.Sql.Params[10].Value:=null;
         DM.Sql.Params[11].AsString:=E_KOL_CODE.Text;
+        DM.Sql.Params[12].AsString:=E_Name.Text;
+        DM.Sql.Params[13].AsString:=E_Tnved.Text;
         DM.Sql.ExecQuery;
         DM.Sql.Transaction.Commit;
         ModalResult:=mrOk;
