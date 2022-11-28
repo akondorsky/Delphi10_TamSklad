@@ -1,14 +1,11 @@
 unit Main;
-
 interface
-
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ImgList, ToolWin, ComCtrls, Menus, ExtCtrls, DBGridEhGrouping,
   ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, GridsEh, DBAxisGridsEh, DBGridEh,
   ActnList, PlatformDefaultStyleActnCtrls, ActnMan, PropFilerEh, PropStorageEh,
-  IbQuery,DB, System.Actions, System.ImageList, EhLibVCL;
-
+  IbQuery,DB, System.Actions, System.ImageList, EhLibVCL, Vcl.StdCtrls;
 type
   TMain_F = class(TForm)
     MainMenu1: TMainMenu;
@@ -64,6 +61,12 @@ type
     Splitter3: TSplitter;
     SaveDialog1: TSaveDialog;
     N221: TMenuItem;
+    RG_Find: TRadioGroup;
+    E_Find: TEdit;
+    Btn_Find: TButton;
+    Label1: TLabel;
+    ToolButton3: TToolButton;
+    Btn_AllRec: TToolButton;
     procedure FormShow(Sender: TObject);
     procedure AddGods_AExecute(Sender: TObject);
     procedure EditGoods_AExecute(Sender: TObject);
@@ -83,6 +86,8 @@ type
     procedure Btn_RefreshClick(Sender: TObject);
     procedure tmp1Click(Sender: TObject);
     procedure N221Click(Sender: TObject);
+    procedure Btn_FindClick(Sender: TObject);
+    procedure Btn_AllRecClick(Sender: TObject);
   private
     { Private declarations }
     procedure SavePril3ToXML;
@@ -94,20 +99,20 @@ type
 
 const
   MYGTDMASK:String='00000000\/000000\/0000000;1;_';
+  sql_decl_start:String = 'select a.*, b.n_ticket||''/''||c.npp as n_part  from DECLS a ' +
+                          ' left join ticket b on a.id_ticket = b.id left join ticket_parts c on a.id_part=c.id ';
+  sql_decl_end:String = ' order by a.ID DESC ';
 
 var
   Main_F: TMain_F;
   User:String;//имя пользователя
   Role:String; // роль пользователя
   Dolj:String;//должность пользователя
-
 implementation
-
 {$R *.dfm}
  uses data, AddGoods_U, EditGoods_U, EndProc_U, EditGoodsOut_U, Sold_U,
   EditSold_U, Reports_U, RegtiDisp_U, AddDecl_U, Warehouse_U, FindRegTi_U,
   SelectDates_U, Unit1,myutils, Login_U;
-
 procedure TMain_F.SavePril3ToXML;
 var
   //i:Integer;
@@ -147,7 +152,6 @@ begin
          Xml. Add ('<PersonMiddleName xmlns="urn:customs.ru:CommonAggregateTypes:5.10.0">АЛЕКСАНДРОВИЧ</PersonMiddleName>');
          Xml. Add (format('<IssueDate xmlns="urn:customs.ru:CommonAggregateTypes:5.10.0">%s</IssueDate>',[DateToIso(Date)]));
      Xml. Add ('</PersonPost>' );
-
      while not Reports_F.Qry_ReportPril3.Eof do
       begin
         Xml. Add ('<GoodsInfo>');
@@ -210,7 +214,6 @@ begin
                       mydate:=DateToIso(Reports_F.Qry_ReportPril3.FieldByName('DT_OUT').AsDateTime);
                  Xml. Add (format('<IssuanceDate>%s</IssuanceDate>',[mydate]));
            Xml. Add ('</Section2>');
-
             Xml. Add ('<Section3>');
                  weight:=ReplaceComma(Reports_F.Qry_ReportPril3.FieldByName('REST_WEIGHT').AsExtended);
                  Xml. Add (format('<GrossWeightQuantity>%s</GrossWeightQuantity>',[weight]));
@@ -237,7 +240,6 @@ begin
   end;
 end;
 
-
 procedure TMain_F.AddDecl_AExecute(Sender: TObject);
 begin
   if FindRegTi_F.ShowModal = mrOk then
@@ -249,13 +251,11 @@ begin
   if Dm.Qry_FindParts.Active then Dm.Qry_FindParts.Close;
   if Dm.Qry_Ts.Active then Dm.Qry_Ts.Close;
 end;
-
 procedure TMain_F.AddGods_AExecute(Sender: TObject);
 begin
   if DM.Qry_Decl.FieldByName('ID').IsNull then Exit;
   AddGoods_F.ShowModal;
 end;
-
 procedure TMain_F.A_CreateActInExecute(Sender: TObject);
 var
  id_decl,id_act:Integer;
@@ -325,7 +325,6 @@ begin
           end;
         DM.Sql.Transaction.Commit;
         ModalResult:=mrOk;
-
         DM.Qry_ActIn_Head.Close;
         DM.Qry_ActIn_Head.Open;
         DM.Qry_ActIn_Head.Locate('ID',id_act,[]);
@@ -345,6 +344,35 @@ begin
     qry.Free;
   end;
 end;
+procedure TMain_F.Btn_AllRecClick(Sender: TObject);
+begin
+  DM.Qry_Decl.Close;
+  DM.Qry_Decl.Sql.Clear;
+  DM.Qry_Decl.Sql.Add(sql_decl_start);
+  DM.Qry_Decl.Sql.Add(sql_decl_end);
+  DM.Qry_Decl.Open;
+end;
+
+procedure TMain_F.Btn_FindClick(Sender: TObject);
+var
+ sql_text: String;
+begin
+  if Length(Trim(E_Find.Text)) = 0 then Exit;
+  DM.Qry_Decl.Close;
+  DM.Qry_Decl.SQL.Clear;
+  case RG_Find.ItemIndex of
+    0:  begin
+          sql_text:=' where a.nomer_dt containing :p0 ';
+        end;
+    1:  begin
+          sql_text:=' where b.n_ticket||''/''||c.npp containing :p0 ';
+        end;
+  end;
+  DM.Qry_Decl.Sql.Add(sql_decl_start);
+  DM.Qry_Decl.Sql.Add(sql_text);
+  DM.Qry_Decl.Params[0].Value:=trim(E_Find.Text);
+  DM.Qry_Decl.Open;
+end;
 
 procedure TMain_F.Btn_RefreshClick(Sender: TObject);
 begin
@@ -358,17 +386,14 @@ procedure TMain_F.EditGoodsOut_AExecute(Sender: TObject);
 begin
   EditGoodsOut_F.ShowModal;
 end;
-
 procedure TMain_F.EditGoodsSold_AExecute(Sender: TObject);
 begin
  EditSold_F.ShowModal;
 end;
-
 procedure TMain_F.EditGoods_AExecute(Sender: TObject);
 begin
  if EditGoods_F.ShowModal = mrOK then DM.RefreshGoods;
 end;
-
 procedure TMain_F.EndProc_AExecute(Sender: TObject);
 begin
   if Main_F.Grid_Goods.DataSource.DataSet.FieldByName('REST_STOIM').AsFloat <= 0 then
@@ -378,7 +403,6 @@ begin
      end;
   EndProc_F.ShowModal;
 end;
-
 procedure TMain_F.FormShow(Sender: TObject);
 var
  i,j:integer;
@@ -410,25 +434,21 @@ if Role = 'CUSTOMS' then
   StatusBar1.Panels[1].Text:='Пользователь: '+ User +' Роль: '+Role;
   Grid_Decl.SetFocus;
 end;
-
 procedure TMain_F.Grid_GoodsDblClick(Sender: TObject);
 begin
   if Role='CUSTOMS' then Exit;
   EditGoods_A.Execute;
 end;
-
 procedure TMain_F.Grid_GoodsOutDblClick(Sender: TObject);
 begin
   if Role='CUSTOMS' then Exit;
   EditGoodsOut_A.Execute;
 end;
-
 procedure TMain_F.Grid_SoldDblClick(Sender: TObject);
 begin
   if Role='CUSTOMS' then Exit;
  EditGoodsSold_A.Execute;
 end;
-
 procedure TMain_F.Item_CreateActOutClick(Sender: TObject);
 var
  id_goods,id_head:Integer;
@@ -440,7 +460,6 @@ begin
   id_head:=Grid_GoodsOut.DataSource.DataSet.FieldByName('ID_HEAD').AsInteger;
   qry := TIBQuery.Create(Self);
   try
-
     qry.Database:=DM.DB;
     sql:='select a.*,b.name_goods,c.id as act_in from goods_out a ' +
        'left join goods_head b on a.id_head = b.id ' +
@@ -482,12 +501,10 @@ begin
     if DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.Rollback;
   end;
 end;
-
 procedure TMain_F.N11Click(Sender: TObject);
 begin
  Warehouse_F.ShowModal;
 end;
-
 procedure TMain_F.N221Click(Sender: TObject);
 begin
   if SelectDates_F.ShowModal <> mrOk  then Exit;
@@ -506,7 +523,6 @@ begin
   Reports_F.Rep1.ShowReport();
   SavePril3ToXML;
 end;
-
 procedure TMain_F.N8Click(Sender: TObject);
 begin
   if SelectDates_F.ShowModal <> mrOk  then Exit;
@@ -519,23 +535,17 @@ begin
   Reports_F.Rep1.ShowReport();
   SavePril3ToXML;
 end;
-
 procedure TMain_F.N9Click(Sender: TObject);
 begin
   RegtiDisp_f.ShowMOdal;
 end;
-
 procedure TMain_F.tmp1Click(Sender: TObject);
 begin
 Form1.ShowModal;
 end;
-
 procedure TMain_F.Tov232_AExecute(Sender: TObject);
 begin
   Sold_F.showmodal;
 end;
-
 end.
-
-
 

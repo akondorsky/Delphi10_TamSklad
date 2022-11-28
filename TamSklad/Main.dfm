@@ -21,7 +21,7 @@ object Main_F: TMain_F
     Top = 0
     Width = 1465
     Height = 40
-    ButtonHeight = 38
+    ButtonHeight = 41
     ButtonWidth = 39
     DrawingStyle = dsGradient
     Images = ImL_32
@@ -43,8 +43,16 @@ object Main_F: TMain_F
       ParentShowHint = False
       ShowHint = True
     end
-    object Btn_Refresh: TToolButton
+    object ToolButton3: TToolButton
       Left = 78
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton3'
+      ImageIndex = 13
+      Style = tbsSeparator
+    end
+    object Btn_Refresh: TToolButton
+      Left = 86
       Top = 0
       Hint = #1054#1073#1085#1086#1074#1080#1090#1100
       Caption = 'Btn_Refresh'
@@ -52,6 +60,14 @@ object Main_F: TMain_F
       ParentShowHint = False
       ShowHint = True
       OnClick = Btn_RefreshClick
+    end
+    object Btn_AllRec: TToolButton
+      Left = 125
+      Top = 0
+      Hint = #1055#1086#1082#1072#1079#1072#1090#1100' '#1074#1089#1102' '#1073#1072#1079#1091
+      Caption = 'Btn_AllRec'
+      ImageIndex = 19
+      OnClick = Btn_AllRecClick
     end
   end
   object Panel_main: TPanel
@@ -63,27 +79,29 @@ object Main_F: TMain_F
     TabOrder = 1
     object Splitter2: TSplitter
       Left = 1
-      Top = 353
+      Top = 397
       Width = 1454
       Height = 4
       Cursor = crVSplit
       Align = alTop
       Color = clGray
       ParentColor = False
+      ExplicitTop = 353
     end
     object Splitter3: TSplitter
       Left = 1
-      Top = 604
+      Top = 648
       Width = 1454
       Height = 4
       Cursor = crVSplit
       Align = alTop
       Color = clGray
       ParentColor = False
+      ExplicitTop = 604
     end
     object Panel_Center: TPanel
       Left = 1
-      Top = 382
+      Top = 426
       Width = 1454
       Height = 222
       Align = alTop
@@ -225,7 +243,7 @@ object Main_F: TMain_F
     end
     object Panel_Top: TPanel
       Left = 1
-      Top = 26
+      Top = 70
       Width = 1454
       Height = 327
       Align = alTop
@@ -509,9 +527,9 @@ object Main_F: TMain_F
     end
     object Panel_Bottom: TPanel
       Left = 1
-      Top = 608
+      Top = 652
       Width = 1454
-      Height = 157
+      Height = 113
       Align = alClient
       Caption = 'Panel_Bottom'
       TabOrder = 2
@@ -519,7 +537,7 @@ object Main_F: TMain_F
         Left = 1
         Top = 26
         Width = 1452
-        Height = 130
+        Height = 86
         Align = alClient
         DataSource = DM.Ds_GoodsSold
         DynProps = <>
@@ -629,7 +647,7 @@ object Main_F: TMain_F
     end
     object Panel5: TPanel
       Left = 1
-      Top = 357
+      Top = 401
       Width = 1454
       Height = 25
       Align = alTop
@@ -649,10 +667,9 @@ object Main_F: TMain_F
       Left = 1
       Top = 1
       Width = 1454
-      Height = 25
+      Height = 69
       Align = alTop
       Alignment = taLeftJustify
-      Caption = #1055#1088#1080#1093#1086#1076' '#1090#1086#1074#1072#1088#1072
       Color = clCream
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -662,6 +679,42 @@ object Main_F: TMain_F
       ParentBackground = False
       ParentFont = False
       TabOrder = 4
+      object Label1: TLabel
+        Left = 5
+        Top = 50
+        Width = 100
+        Height = 16
+        Caption = #1055#1088#1080#1093#1086#1076' '#1090#1086#1074#1072#1088#1072
+      end
+      object RG_Find: TRadioGroup
+        Left = 4
+        Top = 3
+        Width = 237
+        Height = 41
+        Caption = #1055#1086#1080#1089#1082
+        Columns = 2
+        ItemIndex = 0
+        Items.Strings = (
+          #1055#1086' '#8470' '#1044#1058
+          #1055#1086' '#8470' '#1090#1072#1083#1086#1085#1072)
+        TabOrder = 0
+      end
+      object E_Find: TEdit
+        Left = 253
+        Top = 16
+        Width = 149
+        Height = 24
+        TabOrder = 1
+      end
+      object Btn_Find: TButton
+        Left = 408
+        Top = 16
+        Width = 66
+        Height = 25
+        Caption = #1048#1089#1082#1072#1090#1100
+        TabOrder = 2
+        OnClick = Btn_FindClick
+      end
     end
   end
   object Panel_Left: TPanel
@@ -4915,8 +4968,8 @@ object Main_F: TMain_F
     end
   end
   object PopMn_Decl: TPopupMenu
-    Left = 536
-    Top = 72
+    Left = 1040
+    Top = 56
     object N10: TMenuItem
       Action = AddGods_A
     end
@@ -4938,7 +4991,7 @@ object Main_F: TMain_F
   object SaveDialog1: TSaveDialog
     FileName = 'report_pril3.xml'
     Title = #1047#1072#1087#1080#1089#1100' '#1092#1072#1081#1083#1072
-    Left = 48
-    Top = 136
+    Left = 904
+    Top = 176
   end
 end
