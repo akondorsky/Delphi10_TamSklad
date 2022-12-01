@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, GridsEh,
   DBAxisGridsEh, DBGridEh, PropFilerEh, PropStorageEh, Menus, StdCtrls, ExtCtrls,
-  ComCtrls, ToolWin;
+  ComCtrls, ToolWin, EhLibVCL;
 
 type
   TWarehouse_F = class(TForm)

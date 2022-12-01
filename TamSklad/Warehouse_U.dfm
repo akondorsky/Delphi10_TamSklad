@@ -60,7 +60,6 @@ object Warehouse_F: TWarehouse_F
         DynProps = <>
         Flat = True
         FooterParams.Color = clWindow
-        IndicatorOptions = [gioShowRowIndicatorEh]
         OddRowColor = clWindow
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
         PopupMenu = PopMn_ActIn
@@ -70,6 +69,7 @@ object Warehouse_F: TWarehouse_F
         Columns = <
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'ID'
@@ -78,6 +78,7 @@ object Warehouse_F: TWarehouse_F
             Title.Caption = #1048#1076'. '#1072#1082#1090#1072
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'NOMER_DT'
@@ -87,6 +88,7 @@ object Warehouse_F: TWarehouse_F
             Width = 88
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'OWNER'
@@ -96,6 +98,7 @@ object Warehouse_F: TWarehouse_F
             Width = 154
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'SDAL_FULL'
@@ -105,6 +108,7 @@ object Warehouse_F: TWarehouse_F
             Width = 178
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'KEEPER_FULL'
@@ -136,6 +140,7 @@ object Warehouse_F: TWarehouse_F
         Columns = <
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'GOODS_NUMBER'
@@ -145,6 +150,16 @@ object Warehouse_F: TWarehouse_F
             Width = 63
           end
           item
+            CellButtons = <>
+            DynProps = <>
+            EditButtons = <>
+            FieldName = 'DT'
+            Footers = <>
+            Title.Caption = #1044#1072#1090#1072', '#1074#1088#1077#1084#1103
+            Width = 101
+          end
+          item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'GOODS_NAME'
@@ -155,6 +170,7 @@ object Warehouse_F: TWarehouse_F
           end
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'KOL_DOC'
@@ -164,6 +180,7 @@ object Warehouse_F: TWarehouse_F
           end
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'KOL_FACT'
@@ -173,6 +190,7 @@ object Warehouse_F: TWarehouse_F
           end
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'KOL_EDIZM'
@@ -183,6 +201,7 @@ object Warehouse_F: TWarehouse_F
           end
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'WEIGHT_DOC'
@@ -193,6 +212,7 @@ object Warehouse_F: TWarehouse_F
           end
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'WEIGHT_FACT'
@@ -203,6 +223,7 @@ object Warehouse_F: TWarehouse_F
           end
           item
             Alignment = taCenter
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'WEIGHT_EDIZM'
@@ -248,13 +269,13 @@ object Warehouse_F: TWarehouse_F
         Align = alClient
         DataSource = DM.Ds_QryActOut
         DynProps = <>
-        IndicatorOptions = [gioShowRowIndicatorEh]
         PopupMenu = PopMn_ActOut
         TabOrder = 1
         TitleParams.RowLines = 2
         OnDblClick = Grid_ActOutDblClick
         Columns = <
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'ID'
@@ -262,6 +283,7 @@ object Warehouse_F: TWarehouse_F
             Title.Caption = #8470' '#1040#1082#1090#1072
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'DT'
@@ -270,6 +292,7 @@ object Warehouse_F: TWarehouse_F
             Width = 116
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'NAME_GOODS'
@@ -278,6 +301,7 @@ object Warehouse_F: TWarehouse_F
             Width = 180
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'NOMER_DOCOUT'
@@ -286,6 +310,7 @@ object Warehouse_F: TWarehouse_F
             Width = 206
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'KOL'
@@ -295,6 +320,7 @@ object Warehouse_F: TWarehouse_F
             Width = 74
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'KOL_EDIZM'
@@ -303,6 +329,7 @@ object Warehouse_F: TWarehouse_F
             Title.Caption = #1045#1076'. '#1080#1079#1084'.'
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'WEIGHT'
@@ -311,6 +338,7 @@ object Warehouse_F: TWarehouse_F
             Title.Caption = #1042#1077#1089
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'SDAL'
@@ -319,6 +347,7 @@ object Warehouse_F: TWarehouse_F
             Title.Caption = #1042#1099#1076#1072#1083
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'PRIEM'
@@ -327,6 +356,7 @@ object Warehouse_F: TWarehouse_F
             Title.Caption = #1055#1088#1080#1085#1103#1083
           end
           item
+            CellButtons = <>
             DynProps = <>
             EditButtons = <>
             FieldName = 'WEIGHT_EDIZM'
