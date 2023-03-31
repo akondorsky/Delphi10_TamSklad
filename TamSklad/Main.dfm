@@ -705,6 +705,7 @@ object Main_F: TMain_F
         Width = 149
         Height = 24
         TabOrder = 1
+        OnKeyPress = E_FindKeyPress
       end
       object Btn_Find: TButton
         Left = 408
@@ -4955,8 +4956,8 @@ object Main_F: TMain_F
     Top = 256
   end
   object PopMn_Head: TPopupMenu
-    Left = 96
-    Top = 280
+    Left = 80
+    Top = 328
     object N4: TMenuItem
       Action = EndProc_A
     end
@@ -4981,11 +4982,18 @@ object Main_F: TMain_F
     end
   end
   object PopMn_GoodsOut: TPopupMenu
-    Left = 144
-    Top = 464
+    Left = 88
+    Top = 536
     object Item_CreateActOut: TMenuItem
       Caption = #1057#1086#1079#1076#1072#1090#1100' '#1040#1082#1090' '#1074#1099#1076#1072#1095#1080' '#1090#1086#1074#1072#1088#1086#1074' '#1089#1086' '#1089#1082#1083#1072#1076#1072
       OnClick = Item_CreateActOutClick
+    end
+    object N14: TMenuItem
+      Caption = '-'
+    end
+    object N15: TMenuItem
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      OnClick = N15Click
     end
   end
   object SaveDialog1: TSaveDialog

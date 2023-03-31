@@ -67,6 +67,8 @@ type
     Label1: TLabel;
     ToolButton3: TToolButton;
     Btn_AllRec: TToolButton;
+    N14: TMenuItem;
+    N15: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure AddGods_AExecute(Sender: TObject);
     procedure EditGoods_AExecute(Sender: TObject);
@@ -88,6 +90,8 @@ type
     procedure N221Click(Sender: TObject);
     procedure Btn_FindClick(Sender: TObject);
     procedure Btn_AllRecClick(Sender: TObject);
+    procedure E_FindKeyPress(Sender: TObject; var Key: Char);
+    procedure N15Click(Sender: TObject);
   private
     { Private declarations }
     procedure SavePril3ToXML;
@@ -162,7 +166,7 @@ begin
                  Xml. Add ('<SupplementaryQuantity>');
                      Xml. Add (format('<GoodsQuantity>%s</GoodsQuantity>',[Reports_F.Qry_ReportPril3.FieldByName('KOL').AsString]));
                      Xml. Add (format('<MeasureUnitQualifierName>%s</MeasureUnitQualifierName>',[Reports_F.Qry_ReportPril3.FieldByName('KOL_EDIZM').AsString]));
-                     Xml. Add (format('<MeasureUnitQualifierCode>%s</MeasureUnitQualifierCode>',['796']));
+                     Xml. Add (format('<MeasureUnitQualifierCode>%s</MeasureUnitQualifierCode>',[Reports_F.Qry_ReportPril3.FieldByName('KOL_EDIZM_CODE').AsString]));
                  Xml. Add ('</SupplementaryQuantity>');
                  Xml. Add ('<GTDNumber>');
                         Xml. Add (format('<CustomsCode xmlns="urn:customs.ru:CommonAggregateTypes:5.10.0">%s</CustomsCode>',[Copy(Reports_F.Qry_ReportPril3.FieldByName('N_DECL').AsString,1,8)]));
@@ -189,7 +193,7 @@ begin
                  Xml. Add ('<SupplementaryQuantity>');
                      Xml. Add (format('<GoodsQuantity>%s</GoodsQuantity>',[Reports_F.Qry_ReportPril3.FieldByName('KOL_OUT').AsString]));
                      Xml. Add (format('<MeasureUnitQualifierName>%s</MeasureUnitQualifierName>',[Reports_F.Qry_ReportPril3.FieldByName('EDIZM_OUT').AsString]));
-                     Xml. Add (format('<MeasureUnitQualifierCode>%s</MeasureUnitQualifierCode>',['796']));
+                     Xml. Add (format('<MeasureUnitQualifierCode>%s</MeasureUnitQualifierCode>',[Reports_F.Qry_ReportPril3.FieldByName('EDIZM_CODE_OUT').AsString]));
                  Xml. Add ('</SupplementaryQuantity>');
                  Xml. Add ('<GTDNumber>');
                         Xml. Add (format('<CustomsCode xmlns="urn:customs.ru:CommonAggregateTypes:5.10.0">%s</CustomsCode>',[Copy(Reports_F.Qry_ReportPril3.FieldByName('GTD_OUT').AsString,1,8)]));
@@ -220,7 +224,7 @@ begin
                  Xml. Add ('<SupplementaryQuantity>');
                      Xml. Add (format('<GoodsQuantity>%s</GoodsQuantity>',[Reports_F.Qry_ReportPril3.FieldByName('REST_KOL').AsString]));
                      Xml. Add (format('<MeasureUnitQualifierName>%s</MeasureUnitQualifierName>',[Reports_F.Qry_ReportPril3.FieldByName('KOL_EDIZM').AsString]));
-                     Xml. Add (format('<MeasureUnitQualifierCode>%s</MeasureUnitQualifierCode>',['796']));
+                     Xml. Add (format('<MeasureUnitQualifierCode>%s</MeasureUnitQualifierCode>',[Reports_F.Qry_ReportPril3.FieldByName('KOL_EDIZM_CODE').AsString]));
                  Xml. Add ('</SupplementaryQuantity>');
            Xml. Add ('</Section3>');
         Xml. Add ('</GoodsInfo>');
@@ -403,6 +407,12 @@ begin
      end;
   EndProc_F.ShowModal;
 end;
+procedure TMain_F.E_FindKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then Btn_FindClick(Self);
+  
+end;
+
 procedure TMain_F.FormShow(Sender: TObject);
 var
  i,j:integer;
@@ -505,6 +515,38 @@ procedure TMain_F.N11Click(Sender: TObject);
 begin
  Warehouse_F.ShowModal;
 end;
+procedure TMain_F.N15Click(Sender: TObject);
+var
+ Id_Rec:Integer;
+ s1:String;
+begin
+ if Application.MessageBox('Данные будут безвозвратно удалены.Продолжить?','Внимание',mb_IconWarning+mb_YesNo)= id_NO then Exit;
+ Id_Rec:=Grid_GoodsOut.DataSource.DataSet.FieldByName('ID').asInteger;
+ s1:='delete from goods_out where id = :p0 ';
+ Dm.sql.Close;
+ DM.sql.SQL.Clear;
+ DM.sql.SQL.Add(s1);
+try
+ try
+ if not DM.sql.Transaction.InTransaction then DM.sql.Transaction.StartTransaction; //start tran
+  DM.sql.Params[0].AsInteger:=Id_rec;
+  DM.sql.ExecQuery;
+  DM.sql.Transaction.Commit;
+  DM.Qry_GoodsOut.Close;
+  DM.Qry_GoodsOut.Open;
+ except
+      on E: EdatabaseError do
+        begin
+         DM.Sql.Transaction.Rollback;
+         ShowMessage(E.Message);
+        end;
+ end;
+finally
+ IF DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.Rollback;
+end;
+
+end;
+
 procedure TMain_F.N221Click(Sender: TObject);
 begin
   if SelectDates_F.ShowModal <> mrOk  then Exit;
