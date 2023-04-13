@@ -210,8 +210,8 @@ begin
   //E_NGoods.Text:='';
   E_Name.Text:=DM.Qry_Goods.FieldByName('NAME_GOODS').AsString;
   E_Tnved.Text:=DM.Qry_Goods.FieldByName('TNVED_CODE').AsString;
-  E_Proc.Clear;
-  E_Gtd.Clear;
+ // E_Proc.Clear;
+ // E_Gtd.Clear;
   E_Kol.Clear;
   E_Edizm.Text:=DM.Qry_Goods.FieldByName('KOL_EDIZM').AsString;;
   E_KOL_CODE.Text:=DM.Qry_Goods.FieldByName('KOL_EDIZM_CODE').AsString;;

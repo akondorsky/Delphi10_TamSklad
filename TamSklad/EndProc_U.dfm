@@ -47,8 +47,8 @@ object EndProc_F: TEndProc_F
   object Label10: TLabel
     Left = 389
     Top = 205
-    Width = 48
-    Height = 36
+    Width = 47
+    Height = 32
     Caption = #1045#1076'. '#1080#1079#1084' / '#1050#1086#1076
     WordWrap = True
   end
