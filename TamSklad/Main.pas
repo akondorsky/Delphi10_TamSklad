@@ -69,6 +69,7 @@ type
     Btn_AllRec: TToolButton;
     N14: TMenuItem;
     N15: TMenuItem;
+    ImL_Check: TImageList;
     procedure FormShow(Sender: TObject);
     procedure AddGods_AExecute(Sender: TObject);
     procedure EditGoods_AExecute(Sender: TObject);
