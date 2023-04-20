@@ -120,7 +120,8 @@ object DM: TDM
     DataSource = Ds_Goods
     ParamCheck = True
     SQL.Strings = (
-      'select a.*  from  GOODS_OUT_VW a'
+      'select a.*, iif(a.id_act_out is null,0,1) as ID_ACT_HUMAN'
+      '  from  GOODS_OUT_VW a'
       'where a.id_head=:id order by id')
     Left = 37
     Top = 192
