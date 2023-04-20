@@ -128,7 +128,7 @@ object Main_F: TMain_F
             CellButtons = <>
             DynProps = <>
             EditButtons = <>
-            FieldName = 'ID_ACT_OUT'
+            FieldName = 'ID_ACT_HUMAN'
             Footers = <>
             ImageList = ImL_Check
             KeyList.Strings = (

@@ -120,7 +120,7 @@ object DM: TDM
     DataSource = Ds_Goods
     ParamCheck = True
     SQL.Strings = (
-      'select a.*  from  GOODS_OUT_SP a'
+      'select a.*  from  GOODS_OUT_VW a'
       'where a.id_head=:id order by id')
     Left = 37
     Top = 192
