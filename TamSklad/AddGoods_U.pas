@@ -81,23 +81,21 @@ begin
         if not DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.StartTransaction;
         DM.Sql.Close;
         DM.Sql.SQL.Clear;
-        DM.Sql.SQL.Add('insert into goods_head (dt,n_goods,id_decl,name_goods,tnved_code,valuta,date_finished,kol,kol_edizm,weight_vol,weight_edizm,stoim,places,date_goodssold,kol_edizm_code) ');
-        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:p11,:p12,:p13,:p14) ');
+        DM.Sql.SQL.Add('insert into goods_head (dt,n_goods,id_decl,name_goods,tnved_code,date_finished,kol,kol_edizm,weight_vol,weight_edizm,places,date_goodssold,kol_edizm_code) ');
+        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:p11,:p12) ');
         DM.Sql.Params[0].Value:=E_Dt.Value;
         DM.Sql.Params[1].AsInteger:=StrToInt(E_NGoods.Text);
         DM.Sql.Params[2].AsInteger:=id_decl;
         DM.Sql.Params[3].AsString:=s;
         DM.Sql.Params[4].AsString:=E_Tnved.Text;
-        DM.Sql.Params[5].AsString:=E_Val.Text;
-        DM.Sql.Params[6].Value:=E_DateFinished.Value;
-        DM.Sql.Params[7].Value:=E_Kol.Value;
-        DM.Sql.Params[8].AsString:=E_Edizm.Text;
-        DM.Sql.Params[9].Value:=E_Weight.Value;
-        DM.Sql.Params[10].AsString:=E_Edizm1.Text;
-        DM.Sql.Params[11].Value:=E_Cost.Value;
-        DM.Sql.Params[12].AsString:=E_Places.Text;
-        DM.Sql.Params[13].Value:=E_DateGoodsSold.Value;
-        DM.Sql.Params[14].AsString:=E_KOL_CODE.Text;
+        DM.Sql.Params[5].Value:=E_DateFinished.Value;
+        DM.Sql.Params[6].Value:=E_Kol.Value;
+        DM.Sql.Params[7].AsString:=E_Edizm.Text;
+        DM.Sql.Params[8].Value:=E_Weight.Value;
+        DM.Sql.Params[9].AsString:=E_Edizm1.Text;
+        DM.Sql.Params[10].AsString:=E_Places.Text;
+        DM.Sql.Params[11].Value:=E_DateGoodsSold.Value;
+        DM.Sql.Params[12].AsString:=E_KOL_CODE.Text;
         DM.Sql.ExecQuery;
 //        DM.RefreshSettings;
 //        i:=DM.Qry_Settings.FieldByName('NEXT_GOODS').AsInteger + 1;
@@ -136,7 +134,6 @@ begin
   E_KOL_CODE.Text:='';
   E_Weight.Clear;
   E_Edizm1.Text:='';
-  E_Cost.Clear;
   E_DateGoodsSold.Clear;
 
 end;
@@ -202,3 +199,17 @@ end;
 
 end.
 
+
+dt
+n_goods
+id_decl
+,name_goods
+,tnved_code,
+date_finished,
+kol,
+kol_edizm,
+weight_vol,
+weight_edizm,
+places,
+date_goodssold,
+kol_edizm_code

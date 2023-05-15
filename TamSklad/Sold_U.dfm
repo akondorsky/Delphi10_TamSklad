@@ -88,28 +88,28 @@ object Sold_F: TSold_F
     WordWrap = True
   end
   object Label1: TLabel
-    Left = 31
+    Left = 45
     Top = 309
-    Width = 112
+    Width = 98
     Height = 32
     Alignment = taRightJustify
     Caption = #1044#1072#1090#1072' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' '#1082#1086#1085#1090#1088#1086#1083#1103
     WordWrap = True
   end
   object Label2: TLabel
-    Left = 23
+    Left = 24
     Top = 240
-    Width = 122
-    Height = 44
+    Width = 121
+    Height = 32
     Alignment = taRightJustify
     Caption = #1051#1080#1094#1086', '#1087#1088#1080#1086#1073#1088#1077#1090#1096#1077#1077' '#1087#1088#1072#1074#1072' '#1085#1072' '#1090#1086#1074#1072#1088
     WordWrap = True
   end
   object Label4: TLabel
-    Left = 23
+    Left = 62
     Top = 276
-    Width = 123
-    Height = 35
+    Width = 84
+    Height = 32
     Alignment = taRightJustify
     Caption = #8470' '#1076#1086#1082#1091#1084#1077#1085#1090#1072' '#1082#1086#1085#1090#1088#1086#1083#1103
     WordWrap = True
@@ -210,7 +210,7 @@ object Sold_F: TSold_F
     LabelFont.Height = -11
     LabelFont.Name = 'Tahoma'
     LabelFont.Style = []
-    Version = '1.2.1.4'
+    Version = '1.4.7.0'
     SelectionColor = 14155773
     SelectionColorTo = 5821692
     ButtonAppearance.BorderColorHot = 10079963
@@ -314,7 +314,6 @@ object Sold_F: TSold_F
     Width = 89
     Height = 25
     Caption = #1047#1072#1087#1080#1089#1072#1090#1100
-    DoubleBuffered = True
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
       0400000000006801000000000000000000001000000000000000000000000000
@@ -333,7 +332,6 @@ object Sold_F: TSold_F
       333A333333333333333338330000333333333333333333333333333333333333
       0000}
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 9
     OnClick = BitBtn1Click
   end
@@ -343,7 +341,6 @@ object Sold_F: TSold_F
     Width = 89
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
-    DoubleBuffered = True
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
       0400000000006801000000000000000000001000000000000000000000000000
@@ -363,7 +360,6 @@ object Sold_F: TSold_F
       0000}
     ModalResult = 2
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 10
   end
   object E_Owner: TEdit

@@ -144,6 +144,7 @@ object EditGoodsOut_F: TEditGoodsOut_F
     Width = 112
     Height = 24
     DynProps = <>
+    Enabled = False
     EditButtons = <>
     TabOrder = 4
     Visible = True

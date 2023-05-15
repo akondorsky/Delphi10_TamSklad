@@ -61,8 +61,8 @@ begin
         if not DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.StartTransaction;
         DM.Sql.Close;
         DM.Sql.SQL.Clear;
-        DM.Sql.SQL.Add('insert into goods_sold (id_head,n_doc,date_doc,kol,kol_edizm,weight_vol,weight_edizm,stoim,owner) ');
-        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8) ');
+        DM.Sql.SQL.Add('insert into goods_sold (id_head,n_doc,date_doc,kol,kol_edizm,weight_vol,weight_edizm,owner) ');
+        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7) ');
         DM.Sql.Params[0].AsInteger:=i;
         DM.Sql.Params[1].AsString:=E_Ndoc.Text;
         DM.Sql.Params[2].Value:=E_Dt.Value;
@@ -70,8 +70,7 @@ begin
         DM.Sql.Params[4].AsString:=E_Edizm.Text;
         DM.Sql.Params[5].Value:=E_Weight.Value;
         DM.Sql.Params[6].AsString:=E_Edizm1.Text;
-        DM.Sql.Params[7].Value:=E_Cost.Value;
-        DM.Sql.Params[8].AsString:=E_Owner.Text;
+        DM.Sql.Params[7].AsString:=E_Owner.Text;
         DM.Sql.ExecQuery;
         DM.Sql.Transaction.Commit;
         ModalResult:=mrOk;
@@ -121,7 +120,6 @@ begin
    end;
   E_Weight.Clear;
   E_Edizm1.Text:='';
-  E_Cost.Clear;
   E_Owner.Clear;
   E_Ndoc.Clear;
   E_Dt.Clear;

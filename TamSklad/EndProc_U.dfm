@@ -144,11 +144,10 @@ object EndProc_F: TEndProc_F
     Width = 113
     Height = 24
     DynProps = <>
+    Enabled = False
     EditButtons = <>
     TabOrder = 12
     Visible = True
-    OnChange = E_CostChange
-    OnExit = E_CostExit
   end
   object E_Edizm1: TComboBox
     Left = 443

@@ -401,7 +401,7 @@ begin
 end;
 procedure TMain_F.EndProc_AExecute(Sender: TObject);
 begin
-  if Main_F.Grid_Goods.DataSource.DataSet.FieldByName('REST_STOIM').AsFloat <= 0 then
+  if Main_F.Grid_Goods.DataSource.DataSet.FieldByName('REST_KOL').AsFloat <= 0 then
      begin
        Application.MessageBox('Остаток нулевой.Товар не может быть обработан.','Внимание',MB_OK+MB_ICONSTOP);
        Exit;

@@ -65,7 +65,7 @@ object AddGoods_F: TAddGoods_F
     Left = 279
     Top = 334
     Width = 68
-    Height = 21
+    Height = 16
     Caption = #1045#1076'. '#1080#1079#1084'/'#1082#1086#1076
     WordWrap = True
   end
@@ -251,6 +251,7 @@ object AddGoods_F: TAddGoods_F
     Width = 112
     Height = 24
     Hint = #1055#1086#1082#1072#1079#1072#1090#1100' '#1074#1089#1077' '#1079#1072#1087#1080#1089#1080' -'#13#10#1087#1091#1089#1090#1072#1103' '#1089#1090#1088#1086#1082#1072' + Enter'
+    Enabled = False
     Images = Main_F.ImL_Buttons16
     ParentShowHint = False
     ReadOnly = True
@@ -313,6 +314,7 @@ object AddGoods_F: TAddGoods_F
     Width = 113
     Height = 24
     DynProps = <>
+    Enabled = False
     EditButtons = <>
     TabOrder = 5
     Visible = True

@@ -75,22 +75,20 @@ begin
         if not DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.StartTransaction;
         DM.Sql.Close;
         DM.Sql.SQL.Clear;
-        DM.Sql.SQL.Add('update goods_head set name_goods=:p0,tnved_code=:p1,valuta=:p2,date_finished=:p3,kol=:p4,kol_edizm=:p5, ');
-        DM.Sql.SQL.Add('weight_vol=:p6,weight_edizm=:p7,stoim=:p8,places=:p9, date_goodssold=:p10,n_goods=:p11,kol_edizm_code=:p12 where id=:p13 ');
+        DM.Sql.SQL.Add('update goods_head set name_goods=:p0,tnved_code=:p1,date_finished=:p2,kol=:p3,kol_edizm=:p4, ');
+        DM.Sql.SQL.Add('weight_vol=:p5,weight_edizm=:p6,places=:p7, date_goodssold=:p8,n_goods=:p9,kol_edizm_code=:p10 where id=:p11 ');
         DM.Sql.Params[0].AsString:=s;
         DM.Sql.Params[1].AsString:=E_Tnved.Text;
-        DM.Sql.Params[2].AsString:=E_Val.Text;
-        DM.Sql.Params[3].Value:=E_DateFinished.Value;
-        DM.Sql.Params[4].Value:=E_Kol.Value;
-        DM.Sql.Params[5].AsString:=E_Edizm.Text;
-        DM.Sql.Params[6].Value:=E_Weight.Value;
-        DM.Sql.Params[7].AsString:=E_Edizm1.Text;
-        DM.Sql.Params[8].Value:=E_Cost.Value;
-        DM.Sql.Params[9].AsString:=E_Places.Text;
-        DM.Sql.Params[10].Value:=E_DateGoodsSold.Value;
-        DM.Sql.Params[11].AsString:=E_NGoods.Text;
-        DM.Sql.Params[12].AsString:=E_KOL_CODE.Text;
-        DM.Sql.Params[13].AsInteger:=id;
+        DM.Sql.Params[2].Value:=E_DateFinished.Value;
+        DM.Sql.Params[3].Value:=E_Kol.Value;
+        DM.Sql.Params[4].AsString:=E_Edizm.Text;
+        DM.Sql.Params[5].Value:=E_Weight.Value;
+        DM.Sql.Params[6].AsString:=E_Edizm1.Text;
+        DM.Sql.Params[7].AsString:=E_Places.Text;
+        DM.Sql.Params[8].Value:=E_DateGoodsSold.Value;
+        DM.Sql.Params[9].AsString:=E_NGoods.Text;
+        DM.Sql.Params[10].AsString:=E_KOL_CODE.Text;
+        DM.Sql.Params[11].AsInteger:=id;
         DM.Sql.ExecQuery;
         //DM.RefreshSettings;
         DM.Sql.Transaction.Commit;
@@ -143,11 +141,9 @@ var
  s:string;
 begin
   E_NGoods.Text:= Dm.Qry_Goods.FieldByName('N_GOODS').AsString;
-  //s:=SysUtils.DateTimeToStr(DM.Qry_Goods.FieldByName('DT').asDateTime) ;
   E_Dt.Value:=DM.Qry_Goods.FieldByName('DT').Value;
   E_Gtd.Text:=Main_F.Grid_Decl.DataSource.DataSet.FieldByName('NOMER_DT').AsString;
   E_Tnved.Text:=DM.Qry_Goods.FieldByName('TNVED_CODE').AsString;
-  E_Val.Text:=DM.Qry_Goods.FieldByName('VALUTA').AsString;
   E_DateFinished.Value:= DM.Qry_Goods.FieldByName('DATE_FINISHED').Value;
   E_DateGoodsSold.Value:= DM.Qry_Goods.FieldByName('DATE_GOODSSOLD').Value;
   E_Kol.Value:=DM.Qry_Goods.FieldByName('KOL').Value;
@@ -155,7 +151,6 @@ begin
   E_KOL_CODE.Text:=DM.Qry_Goods.FieldByName('KOL_EDIZM_CODE').AsString;
   E_Weight.Value:=DM.Qry_Goods.FieldByName('WEIGHT_VOL').Value;
   E_Edizm1.Text:=DM.Qry_Goods.FieldByName('WEIGHT_EDIZM').AsString;
-  E_Cost.Value:=DM.Qry_Goods.FieldByName('STOIM').Value;
   E_NameGoods.Text:=DM.Qry_Goods.FieldByName('NAME_GOODS').AsString;
   E_Places.Text:=DM.Qry_Goods.FieldByName('PLACES').AsString;
 

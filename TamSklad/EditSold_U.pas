@@ -44,7 +44,7 @@ type
 
 var
   EditSold_F: TEditSold_F;
-  KolRest,WeightRest,CostRest:Double;
+  KolRest,WeightRest:Double;
 
 implementation
 
@@ -63,16 +63,15 @@ begin
         DM.Sql.Close;
         DM.Sql.SQL.Clear;
         DM.Sql.SQL.Add('update goods_sold set n_doc=:p0,date_doc=:p1,kol=:p2,kol_edizm=:p3,weight_vol=:p4, ');
-        DM.Sql.SQL.Add('weight_edizm=:p5,stoim=:p6,owner=:p7 where id=:p8 ');
+        DM.Sql.SQL.Add('weight_edizm=:p5,owner=:p6 where id=:p7 ');
         DM.Sql.Params[0].AsString:=E_Ndoc.Text;
         DM.Sql.Params[1].Value:=E_Dt.Value;
         DM.Sql.Params[2].Value:=E_Kol.Value;
         DM.Sql.Params[3].AsString:=E_Edizm.Text;
         DM.Sql.Params[4].Value:=E_Weight.Value;
         DM.Sql.Params[5].AsString:=E_Edizm1.Text;
-        DM.Sql.Params[6].Value:=E_Cost.Value;
-        DM.Sql.Params[7].AsString:=E_Owner.Text;
-        DM.Sql.Params[8].AsInteger:=i;
+        DM.Sql.Params[6].AsString:=E_Owner.Text;
+        DM.Sql.Params[7].AsInteger:=i;
         DM.Sql.ExecQuery;
         DM.Sql.Transaction.Commit;
         ModalResult:=mrOk;
@@ -122,7 +121,6 @@ begin
    end;
   E_Weight.Value:=DM.Qry_GoodsSold.FieldByName('WEIGHT_VOL').Value;
   E_Edizm1.Text:=DM.Qry_GoodsSold.FieldByName('WEIGHT_EDIZM').AsString;
-  E_Cost.Value:=DM.Qry_GoodsSold.FieldByName('STOIM').Value;
   E_Owner.Text:=DM.Qry_GoodsSold.FieldByName('OWNER').AsString;
   E_Ndoc.Text:=DM.Qry_GoodsSold.FieldByName('N_DOC').AsString;
   E_Dt.Value:=DM.Qry_GoodsSold.FieldByName('DATE_DOC').Value

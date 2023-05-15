@@ -226,6 +226,7 @@ object EditGoods_F: TEditGoods_F
     Width = 112
     Height = 24
     Hint = #1055#1086#1082#1072#1079#1072#1090#1100' '#1074#1089#1077' '#1079#1072#1087#1080#1089#1080' -'#13#10#1087#1091#1089#1090#1072#1103' '#1089#1090#1088#1086#1082#1072' + Enter'
+    Enabled = False
     Images = Main_F.ImL_Buttons16
     ParentShowHint = False
     ReadOnly = True
@@ -282,10 +283,11 @@ object EditGoods_F: TEditGoods_F
   end
   object E_Cost: TDBNumberEditEh
     Left = 160
-    Top = 278
+    Top = 275
     Width = 113
     Height = 24
     DynProps = <>
+    Enabled = False
     EditButtons = <>
     TabOrder = 6
     Visible = True

@@ -76,22 +76,20 @@ begin
         DM.Sql.Close;
         DM.Sql.SQL.Clear;
         DM.Sql.SQL.Add('update goods_out set dt_out=:p0,custproc=:p1,kol=:p2,kol_edizm=:p3,weight_vol=:p4, ');
-        DM.Sql.SQL.Add('weight_edizm=:p5,stoim=:p6,n_decl=:p7,n_goods=:p8,custproc_code=:p9,name_goods_out=:p10,tnved_out=:p11,kol_edizm_code=:p12 where id=:p13 ');
+        DM.Sql.SQL.Add('weight_edizm=:p5,n_decl=:p6,n_goods=:p7,custproc_code=:p8,name_goods_out=:p9,tnved_out=:p10,kol_edizm_code=:p11 where id=:p12 ');
         DM.Sql.Params[0].Value:=E_Dt.Value;
         DM.Sql.Params[1].AsString:=E_ProcName.Text;
         DM.Sql.Params[2].Value:=E_Kol.Value;
         DM.Sql.Params[3].AsString:=E_Edizm.Text;
         DM.Sql.Params[4].Value:=E_Weight.Value;
         DM.Sql.Params[5].AsString:=E_Edizm1.Text;
-        DM.Sql.Params[6].Value:=E_Cost.Value;
-        DM.Sql.Params[7].AsString:=E_Gtd.Text;
-        DM.Sql.Params[8].AsString:=E_NGoods.Text;
-        DM.Sql.Params[9].AsString:=E_Proc.Text;
-        DM.Sql.Params[10].AsString:=E_Name.Text;
-        DM.Sql.Params[11].AsString:=E_Tnved.Text;
-        DM.Sql.Params[12].AsString:=E_KOL_CODE.Text;
-        DM.Sql.Params[13].AsInteger:=i;
-
+        DM.Sql.Params[6].AsString:=E_Gtd.Text;
+        DM.Sql.Params[7].AsString:=E_NGoods.Text;
+        DM.Sql.Params[8].AsString:=E_Proc.Text;
+        DM.Sql.Params[9].AsString:=E_Name.Text;
+        DM.Sql.Params[10].AsString:=E_Tnved.Text;
+        DM.Sql.Params[11].AsString:=E_KOL_CODE.Text;
+        DM.Sql.Params[12].AsInteger:=i;
         DM.Sql.ExecQuery;
         DM.Sql.Transaction.Commit;
         ModalResult:=mrOk;
@@ -178,7 +176,6 @@ begin
   E_KOL_CODE.Text:=DM.Qry_GoodsOut.FieldByName('kol_edizm_code').AsString;
   E_Weight.Value:= DM.Qry_GoodsOut.FieldByName('WEIGHT_VOL').Value;
   E_Edizm1.Text:=DM.Qry_GoodsOut.FieldByName('WEIGHT_EDIZM').AsString;
-  E_Cost.Value:=DM.Qry_GoodsOut.FieldByName('STOIM').Value;
   E_Dt.Value:=DM.Qry_GoodsOut.FieldByName('DT_OUT').Value;
 
 

@@ -42,10 +42,8 @@ type
     procedure BitBtn1Click(Sender: TObject);
     procedure E_KolChange(Sender: TObject);
     procedure E_WeightChange(Sender: TObject);
-    procedure E_CostChange(Sender: TObject);
     procedure E_KolExit(Sender: TObject);
     procedure E_WeightExit(Sender: TObject);
-    procedure E_CostExit(Sender: TObject);
     procedure E_ProcRightButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure E_EdizmRightButtonClick(Sender: TObject);
@@ -59,7 +57,7 @@ type
 
 var
   EndProc_F: TEndProc_F;
-  KolRest,WeightRest,CostRest:Double;
+  KolRest,WeightRest:Double;
   MY_DATESEPARATOR:Char;
 
 implementation
@@ -79,8 +77,8 @@ begin
         DM.Sql.Close;
         DM.Sql.SQL.Clear;
         DM.Sql.SQL.Add('insert into goods_out (dt_out,id_head,custproc,kol,kol_edizm,weight_vol, ');
-        DM.Sql.SQL.Add(' weight_edizm,stoim,n_decl,n_goods,custproc_code,kol_edizm_code,name_goods_out,tnved_out )' );
-        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:p11,:p12,:p13) ');
+        DM.Sql.SQL.Add(' weight_edizm,n_decl,n_goods,custproc_code,kol_edizm_code,name_goods_out,tnved_out )' );
+        DM.Sql.SQL.Add(' values (:p0,:p1,:p2,:p3,:p4,:p5,:p6,:p7,:p8,:p9,:p10,:p11,:p12) ');
         DM.Sql.Params[0].Value:=E_Dt.Value;
         DM.Sql.Params[1].AsInteger:=i;
         DM.Sql.Params[2].AsString:=E_Proc.Text;
@@ -88,16 +86,15 @@ begin
         DM.Sql.Params[4].AsString:=E_Edizm.Text;
         DM.Sql.Params[5].Value:=E_Weight.Value;
         DM.Sql.Params[6].AsString:=E_Edizm1.Text;
-        DM.Sql.Params[7].Value:=E_Cost.Value;
-        DM.Sql.Params[8].AsString:=E_Gtd.Text;
-        DM.Sql.Params[9].AsString:=E_NGoods.Text;
+        DM.Sql.Params[7].AsString:=E_Gtd.Text;
+        DM.Sql.Params[8].AsString:=E_NGoods.Text;
         if Length(E_Proc.Text) > 0 then
-            DM.Sql.Params[10].Value:=CustProc_F.Grid1.DataSource.DataSet.FieldByName('CODE_PROC').Value
+            DM.Sql.Params[9].Value:=CustProc_F.Grid1.DataSource.DataSet.FieldByName('CODE_PROC').Value
            else
-            DM.Sql.Params[10].Value:=null;
-        DM.Sql.Params[11].AsString:=E_KOL_CODE.Text;
-        DM.Sql.Params[12].AsString:=E_Name.Text;
-        DM.Sql.Params[13].AsString:=E_Tnved.Text;
+            DM.Sql.Params[9].Value:=null;
+        DM.Sql.Params[10].AsString:=E_KOL_CODE.Text;
+        DM.Sql.Params[11].AsString:=E_Name.Text;
+        DM.Sql.Params[12].AsString:=E_Tnved.Text;
         DM.Sql.ExecQuery;
         DM.Sql.Transaction.Commit;
         ModalResult:=mrOk;
@@ -115,20 +112,6 @@ begin
     finally
       if DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.Rollback;
     end;
-end;
-
-procedure TEndProc_F.E_CostChange(Sender: TObject);
-begin
-  Cost_rest.Value:=CostRest - E_Cost.Value;
-end;
-
-procedure TEndProc_F.E_CostExit(Sender: TObject);
-begin
-  if Cost_rest.Value < 0 then
-  begin
-    ShowMessage('Остаток не может быть < 0');
-    E_Cost.SetFocus;
-  end;
 end;
 
 procedure TEndProc_F.E_EdizmRightButtonClick(Sender: TObject);
@@ -197,7 +180,6 @@ begin
   E_Gtd.EditMask:='00000000/000000/0000000;1;_';
   KolRest:=Main_F.Grid_Goods.DataSource.DataSet.FieldByName('REST_KOL').AsFloat;
   WeightRest:=Main_F.Grid_Goods.DataSource.DataSet.FieldByName('REST_WEIGHT').AsFloat;
-  CostRest:=Main_F.Grid_Goods.DataSource.DataSet.FieldByName('REST_STOIM').AsFloat;
   SetControls;
   E_NGoods.SetFocus;
 end;
@@ -207,21 +189,16 @@ var
  i:Integer;
 begin
   E_NGoods.Text:=DM.Qry_Goods.FieldByName('N_GOODS').AsString;
-  //E_NGoods.Text:='';
   E_Name.Text:=DM.Qry_Goods.FieldByName('NAME_GOODS').AsString;
   E_Tnved.Text:=DM.Qry_Goods.FieldByName('TNVED_CODE').AsString;
- // E_Proc.Clear;
- // E_Gtd.Clear;
   E_Kol.Clear;
   E_Edizm.Text:=DM.Qry_Goods.FieldByName('KOL_EDIZM').AsString;;
   E_KOL_CODE.Text:=DM.Qry_Goods.FieldByName('KOL_EDIZM_CODE').AsString;;
   E_Weight.Clear;
   E_Edizm1.Text:=DM.Qry_Goods.FieldByName('WEIGHT_EDIZM').AsString;;
-  E_Cost.Clear;
   E_Dt.Clear;
   Kol_rest.Value:=KolRest;
   Weight_rest.Value:=WeightRest;
-  Cost_rest.Value:=CostRest;
 
 end;
 

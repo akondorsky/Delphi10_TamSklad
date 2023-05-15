@@ -138,6 +138,7 @@ object EditSold_F: TEditSold_F
     Width = 113
     Height = 24
     DynProps = <>
+    Enabled = False
     EditButtons = <>
     TabOrder = 7
     Visible = True
@@ -210,7 +211,7 @@ object EditSold_F: TEditSold_F
     LabelFont.Height = -11
     LabelFont.Name = 'Tahoma'
     LabelFont.Style = []
-    Version = '1.2.1.4'
+    Version = '1.4.7.0'
     SelectionColor = 14155773
     SelectionColorTo = 5821692
     ButtonAppearance.BorderColorHot = 10079963
@@ -314,7 +315,6 @@ object EditSold_F: TEditSold_F
     Width = 89
     Height = 25
     Caption = #1047#1072#1087#1080#1089#1072#1090#1100
-    DoubleBuffered = True
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
       0400000000006801000000000000000000001000000000000000000000000000
@@ -333,7 +333,6 @@ object EditSold_F: TEditSold_F
       333A333333333333333338330000333333333333333333333333333333333333
       0000}
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 9
     OnClick = BitBtn1Click
   end
@@ -343,7 +342,6 @@ object EditSold_F: TEditSold_F
     Width = 89
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1080#1090#1100
-    DoubleBuffered = True
     Glyph.Data = {
       DE010000424DDE01000000000000760000002800000024000000120000000100
       0400000000006801000000000000000000001000000000000000000000000000
@@ -363,7 +361,6 @@ object EditSold_F: TEditSold_F
       0000}
     ModalResult = 2
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 10
   end
   object E_Owner: TEdit
