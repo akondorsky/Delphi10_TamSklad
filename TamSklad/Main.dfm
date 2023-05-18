@@ -344,19 +344,6 @@ object Main_F: TMain_F
             CellButtons = <>
             DynProps = <>
             EditButtons = <>
-            FieldName = 'STOIM'
-            Footers = <
-              item
-                FieldName = 'STOIM'
-                ValueType = fvtSum
-              end>
-            Title.Alignment = taCenter
-            Title.Caption = #1057#1090#1086#1080#1084#1086#1089#1090#1100
-          end
-          item
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
             FieldName = 'KOL'
             Footers = <
               item
@@ -597,15 +584,6 @@ object Main_F: TMain_F
             Footers = <>
             Title.Alignment = taCenter
             Title.Caption = #1044#1086#1087'. '#1077#1076'. '#1080#1079#1084'.'
-          end
-          item
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'STOIM'
-            Footers = <>
-            Title.Alignment = taCenter
-            Title.Caption = #1057#1090#1086#1080#1084#1086#1089#1090#1100
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end

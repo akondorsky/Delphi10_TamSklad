@@ -138,6 +138,7 @@ object Sold_F: TSold_F
     Width = 113
     Height = 24
     DynProps = <>
+    Enabled = False
     EditButtons = <>
     TabOrder = 7
     Visible = True
