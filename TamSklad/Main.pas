@@ -70,6 +70,10 @@ type
     N14: TMenuItem;
     N15: TMenuItem;
     ImL_Check: TImageList;
+    Iml_Minus: TImageList;
+    N16: TMenuItem;
+    N17: TMenuItem;
+    N18: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure AddGods_AExecute(Sender: TObject);
     procedure EditGoods_AExecute(Sender: TObject);
@@ -93,6 +97,12 @@ type
     procedure Btn_AllRecClick(Sender: TObject);
     procedure E_FindKeyPress(Sender: TObject; var Key: Char);
     procedure N15Click(Sender: TObject);
+    procedure N17Click(Sender: TObject);
+    procedure N18Click(Sender: TObject);
+    procedure Grid_GoodsKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure Grid_GoodsDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
   private
     { Private declarations }
     procedure SavePril3ToXML;
@@ -118,6 +128,64 @@ implementation
  uses data, AddGoods_U, EditGoods_U, EndProc_U, EditGoodsOut_U, Sold_U,
   EditSold_U, Reports_U, RegtiDisp_U, AddDecl_U, Warehouse_U, FindRegTi_U,
   SelectDates_U, Unit1,myutils, Login_U;
+
+procedure SetNotInReportFlag(Id:Integer);
+begin
+  try
+     try
+        if not DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.StartTransaction;
+        DM.Sql.Close;
+        DM.Sql.SQL.Clear;
+        DM.Sql.SQL.Add('update goods_head set not_report=:p0 where id=:p1 ');
+        DM.Sql.Params[0].asInteger:=1;
+        DM.Sql.Params[1].asInteger:=id;
+        DM.Sql.ExecQuery;
+        DM.Sql.Transaction.Commit;
+        Dm.Qry_Goods.Close;
+        Dm.Qry_Goods.Open;
+        Dm.Qry_Goods.Locate('id',id,[]);
+      except
+        on E: EdatabaseError do
+          begin
+           DM.Sql.Transaction.Rollback;
+           ShowMessage(E.Message);
+          end;
+      end;
+  finally
+    if DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.Rollback;
+  end;
+
+end;
+
+procedure SetInReportFlag(Id:Integer);
+begin
+  try
+     try
+        if not DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.StartTransaction;
+        DM.Sql.Close;
+        DM.Sql.SQL.Clear;
+        DM.Sql.SQL.Add('update goods_head set not_report=:p0 where id=:p1 ');
+        DM.Sql.Params[0].asInteger:=0;
+        DM.Sql.Params[1].asInteger:=id;
+        DM.Sql.ExecQuery;
+        DM.Sql.Transaction.Commit;
+        Dm.Qry_Goods.Close;
+        Dm.Qry_Goods.Open;
+        Dm.Qry_Goods.Locate('id',id,[]);
+      except
+        on E: EdatabaseError do
+          begin
+           DM.Sql.Transaction.Rollback;
+           ShowMessage(E.Message);
+          end;
+      end;
+  finally
+    if DM.Sql.Transaction.InTransaction then DM.Sql.Transaction.Rollback;
+  end;
+
+end;
+
+
 procedure TMain_F.SavePril3ToXML;
 var
   //i:Integer;
@@ -450,6 +518,70 @@ begin
   if Role='CUSTOMS' then Exit;
   EditGoods_A.Execute;
 end;
+procedure TMain_F.Grid_GoodsDrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
+begin
+if  (Sender as TDBGridEh).SelectedRows.CurrentRowSelected then
+ begin
+  (Sender as TDBGridEh).Canvas.Font.Color := clYellow; // Font color
+  (Sender as TDBGridEh).Canvas.Brush.Color := clBlue; // Background color
+  (Sender as TDBGridEh).Canvas.FillRect(Rect);
+ end;
+  (Sender as TDBGridEh).DefaultDrawColumnCell(Rect, Datacol,Column, State);
+end;
+
+procedure TMain_F.Grid_GoodsKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+Case Key of
+ VK_UP, VK_PRIOR, VK_LEFT : dm.Qry_Goods.Prior;
+ VK_DOWN, VK_NEXT, VK_RIGHT : dm.Qry_Goods.Next;
+ VK_HOME : dm.Qry_Goods.First;
+ VK_END : dm.Qry_Goods.Last;
+ VK_INSERT,VK_SPACE: //пробел
+   begin
+       if ssShift in Shift then
+         begin
+            dm.Qry_Goods.DisableControls;
+            dm.Qry_Goods.First;
+            while not dm.Qry_Goods.Eof do
+              begin
+                  Grid_Goods.SelectedRows.CurrentRowSelected:=False;
+                  dm.Qry_Goods.Next;
+              end;
+            dm.Qry_Goods.EnableControls;
+         end
+       else
+         if ssCtrl in Shift then
+            begin
+                dm.Qry_Goods.DisableControls;
+                dm.Qry_Goods.First;
+                while not dm.Qry_Goods.Eof do
+                   begin
+                       Grid_Goods.SelectedRows.CurrentRowSelected:=True;
+                       dm.Qry_Goods.Next;
+                   end;
+               dm.Qry_Goods.EnableControls;
+           end
+          else if Shift=[] then
+             begin
+                 if Grid_Goods.SelectedRows.CurrentRowSelected then
+                     begin
+                       Grid_Goods.SelectedRows.CurrentRowSelected:=false;
+                       dm.Qry_Goods.Next;
+                     end
+                   else if not Grid_Goods.SelectedRows.CurrentRowSelected then
+                           begin
+                             Grid_Goods.SelectedRows.CurrentRowSelected:=true;
+                             dm.Qry_Goods.Next;
+                           end;
+
+                 end;
+          end;
+end;
+IF Key<>VK_TAB then Key:=0;
+end;
+
 procedure TMain_F.Grid_GoodsOutDblClick(Sender: TObject);
 begin
   if Role='CUSTOMS' then Exit;
@@ -547,6 +679,81 @@ finally
 end;
 
 end;
+
+procedure TMain_F.N17Click(Sender: TObject);
+var
+  id_rec:Integer;
+  Tempbookmark:TBookMark;
+  x:word;
+begin
+  if Grid_Goods.SelectedRows.Count = 0 then
+    begin
+      Application.MessageBox('Не выбрано ни одной записи! Операция не выполнена','Внимание!',MB_OK+MB_ICONSTOP );
+      Exit;
+    end;
+  try
+    Grid_Goods.DataSource.DataSet.DisableControls;
+    TempBookmark := Grid_Goods.DataSource.DataSet.GetBookmark;
+       try
+        for x := 0 to Grid_Goods.SelectedRows.Count - 1 do
+          begin
+            if Grid_Goods.SelectedRows.IndexOf(Grid_Goods.SelectedRows.Items[x]) > -1 then
+                begin
+                  Grid_Goods.DataSource.Dataset.Bookmark := Grid_Goods.SelectedRows.Items[x];
+                  id_rec:=Grid_Goods.DataSource.DataSet.FieldByName('ID').asInteger;
+                  if Grid_Goods.DataSource.DataSet.FieldByName('not_report').AsInteger <> 1 then SetNotInReportFlag(id_rec);
+                end; //if
+          end;
+          ShowMessage('Выполнено');
+       except
+            Application.MessageBox('Ошибка записи данных','Внимание!',mb_OK+mb_iconstop);
+            exit;
+       end; // try . .except
+  finally
+    Grid_Goods.DataSource.DataSet.GotoBookmark(TempBookmark);
+    Grid_Goods.DataSource.DataSet.FreeBookmark(TempBookmark);
+    Grid_Goods.SelectedRows.Clear;
+    Grid_Goods.DataSource.DataSet.EnableControls;
+  end;
+end;
+
+procedure TMain_F.N18Click(Sender: TObject);
+var
+  id_rec:Integer;
+  Tempbookmark:TBookMark;
+  x:word;
+begin
+  if Grid_Goods.SelectedRows.Count = 0 then
+    begin
+      Application.MessageBox('Не выбрано ни одной записи! Операция не выполнена','Внимание!',MB_OK+MB_ICONSTOP );
+      Exit;
+    end;
+  try
+    TempBookmark := Grid_Goods.DataSource.DataSet.GetBookmark;
+    Grid_Goods.DataSource.DataSet.DisableControls;
+       try
+        for x := 0 to Grid_Goods.SelectedRows.Count - 1 do
+          begin
+            if Grid_Goods.SelectedRows.IndexOf(Grid_Goods.SelectedRows.Items[x]) > -1 then
+                begin
+                  Grid_Goods.DataSource.Dataset.Bookmark := Grid_Goods.SelectedRows.Items[x];
+                  id_rec:=Grid_Goods.DataSource.DataSet.FieldByName('ID').asInteger;
+                  if Grid_Goods.DataSource.DataSet.FieldByName('not_report').AsInteger = 1 then SetInReportFlag(id_rec);
+                end; //if
+          end;
+          ShowMessage('Выполнено');
+       except
+            Application.MessageBox('Ошибка записи данных','Внимание!',mb_OK+mb_iconstop);
+            exit;
+       end; // try . .except
+  finally
+    Grid_Goods.DataSource.DataSet.GotoBookmark(TempBookmark);
+    Grid_Goods.DataSource.DataSet.FreeBookmark(TempBookmark);
+    Grid_Goods.SelectedRows.Clear;
+    Grid_Goods.DataSource.DataSet.EnableControls;
+  end;
+
+ end;
 
 procedure TMain_F.N221Click(Sender: TObject);
 begin

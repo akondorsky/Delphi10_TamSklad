@@ -55,7 +55,9 @@ object Reports_F: TReports_F
       'left join goods_out b on a.id = b.id_head'
       'left join goods_sold c on a.id = c.id_head'
       'left join decls d on a.id_decl = d.id'
-      'where  ((a.rest_kol > 0) and (cast (a.dt as date) < :p0))'
+      
+        'where ( (a.rest_kol > 0) and (cast (a.dt as date) < :p0) and (a.' +
+        'not_report <> 1) )'
       '   or (cast(a.dt as date) between :p1 and :p2)'
       '   or (cast (b.dt_out as date) between :p3 and :p4)'
       '   or (c.date_doc between :p5 and :p6 )'

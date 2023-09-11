@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls, DBCtrlsEh, AdvDropDown, AdvMultiColumnDropDown,
-  Mask, Buttons,Db;
+  Mask, Buttons,Db, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
+  IBX.IBCustomDataSet, IBX.IBQuery, EhLibVCL, GridsEh, DBAxisGridsEh, DBGridEh;
 
 type
   TSold_F = class(TForm)
@@ -33,6 +34,9 @@ type
     E_Owner: TEdit;
     Label4: TLabel;
     E_Ndoc: TEdit;
+    DBGridEh1: TDBGridEh;
+    DataSource1: TDataSource;
+    IBQuery1: TIBQuery;
     procedure FormShow(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
   private

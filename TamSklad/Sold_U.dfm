@@ -4,8 +4,8 @@ object Sold_F: TSold_F
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = #1058#1086#1074#1072#1088#1099', '#1089' '#1082#1086#1090#1086#1088#1099#1080#1084' '#1089#1086#1074#1077#1088#1096#1072#1083#1080#1089#1100' '#1086#1087#1077#1088#1072#1094#1080#1080' '#1087'.4 '#1089#1090'. 232 '#1058#1050' '#1045#1040#1069#1057
-  ClientHeight = 443
-  ClientWidth = 645
+  ClientHeight = 817
+  ClientWidth = 643
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -378,5 +378,33 @@ object Sold_F: TSold_F
     Height = 24
     MaxLength = 100
     TabOrder = 12
+  end
+  object DBGridEh1: TDBGridEh
+    Left = 0
+    Top = 427
+    Width = 641
+    Height = 254
+    DataSource = DataSource1
+    DynProps = <>
+    TabOrder = 13
+    object RowDetailData: TRowDetailPanelControlEh
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = IBQuery1
+    Left = 488
+    Top = 728
+  end
+  object IBQuery1: TIBQuery
+    Database = DM.DB
+    Transaction = DM.IBTR
+    Active = True
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    SQL.Strings = (
+      'select * from goods_header')
+    Left = 96
+    Top = 720
   end
 end

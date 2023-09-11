@@ -36,7 +36,7 @@ object DM: TDM
   end
   object DB: TIBDatabase
     Connected = True
-    DatabaseName = 'c:\fb_db\sirius_25.fdb'
+    DatabaseName = 'C:\FB_DB\SIRIUS_25.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=mkey'
