@@ -18,6 +18,7 @@ type
     frxXLSExport1: TfrxXLSExport;
     frxDB_RepActOut: TfrxDBDataset;
     Qry_ActOut: TIBQuery;
+    frxDB_QryNotInReport: TfrxDBDataset;
   private
     { Private declarations }
 

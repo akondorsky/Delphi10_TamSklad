@@ -156,6 +156,7 @@ object Login_F: TLogin_F
     MaxLength = 10
     PasswordChar = '*'
     TabOrder = 1
+    Text = ''
     OnKeyPress = E_PwdKeyPress
   end
   object E_Login: TComboBox
@@ -172,10 +173,8 @@ object Login_F: TLogin_F
     Top = 104
     Width = 75
     Height = 25
-    DoubleBuffered = True
     Kind = bkOK
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 2
     OnClick = SaveBtnClick
   end
@@ -185,10 +184,8 @@ object Login_F: TLogin_F
     Width = 75
     Height = 25
     Caption = #1054#1090#1084#1077#1085#1072
-    DoubleBuffered = True
     Kind = bkCancel
     NumGlyphs = 2
-    ParentDoubleBuffered = False
     TabOrder = 3
     OnClick = CancBtnClick
   end
@@ -201,6 +198,9 @@ object Login_F: TLogin_F
   object IBQuery1: TIBQuery
     Database = DM.DB
     Transaction = DM.IBTR
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
     SQL.Strings = (
       'select fio from users where ts_flag = 1 order by fio')
     Left = 16

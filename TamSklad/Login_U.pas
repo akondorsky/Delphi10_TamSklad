@@ -113,6 +113,7 @@ begin
         User:=IBQuery1.FieldByName('FIO').AsString;
         Role:=IBQuery1.FieldByName('TS_ROLE').AsString;
         Dolj:=IBQuery1.FieldByName('DOLJ').AsString;
+        Rights:=IBQuery1.FieldByName('EXT_RIGHTS').AsString;
         ModalResult:=mrOk;
      end;
  finally

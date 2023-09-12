@@ -275,7 +275,7 @@ object Main_F: TMain_F
         FooterParams.Color = clMoneyGreen
         FooterParams.RowLines = 1
         OddRowColor = clWindow
-        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect]
         PopupMenu = PopMn_Head
         SumList.Active = True
         TabOrder = 0
@@ -4946,13 +4946,20 @@ object Main_F: TMain_F
     object N16: TMenuItem
       Caption = '-'
     end
-    object N17: TMenuItem
+    object PopMn_NotInReport: TMenuItem
       Caption = #1053#1077' '#1074#1082#1083'. '#1074' '#1086#1090#1095#1077#1090
-      OnClick = N17Click
+      Enabled = False
+      OnClick = PopMn_NotInReportClick
     end
-    object N18: TMenuItem
+    object PopMn_InReport: TMenuItem
       Caption = #1042#1082#1083'. '#1074' '#1086#1090#1095#1077#1090
-      OnClick = N18Click
+      Enabled = False
+      OnClick = PopMn_InReportClick
+    end
+    object PopMn_AllRecNotInReport: TMenuItem
+      Caption = #1055#1086#1082#1072#1079#1072#1090#1100' '#1074#1089#1077' '#1090#1086#1074#1072#1088#1099', '#1085#1077' '#1074#1093#1086#1076#1103#1097#1080#1077' '#1074' '#1086#1090#1095#1077#1090
+      Enabled = False
+      OnClick = PopMn_AllRecNotInReportClick
     end
   end
   object PopMn_Decl: TPopupMenu

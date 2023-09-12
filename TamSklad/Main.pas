@@ -72,8 +72,9 @@ type
     ImL_Check: TImageList;
     Iml_Minus: TImageList;
     N16: TMenuItem;
-    N17: TMenuItem;
-    N18: TMenuItem;
+    PopMn_NotInReport: TMenuItem;
+    PopMn_InReport: TMenuItem;
+    PopMn_AllRecNotInReport: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure AddGods_AExecute(Sender: TObject);
     procedure EditGoods_AExecute(Sender: TObject);
@@ -97,12 +98,13 @@ type
     procedure Btn_AllRecClick(Sender: TObject);
     procedure E_FindKeyPress(Sender: TObject; var Key: Char);
     procedure N15Click(Sender: TObject);
-    procedure N17Click(Sender: TObject);
-    procedure N18Click(Sender: TObject);
+    procedure PopMn_NotInReportClick(Sender: TObject);
+    procedure PopMn_InReportClick(Sender: TObject);
     procedure Grid_GoodsKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Grid_GoodsDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumnEh; State: TGridDrawState);
+    procedure PopMn_AllRecNotInReportClick(Sender: TObject);
   private
     { Private declarations }
     procedure SavePril3ToXML;
@@ -123,6 +125,7 @@ var
   User:String;//им€ пользовател€
   Role:String; // роль пользовател€
   Dolj:String;//должность пользовател€
+  Rights:String;//доп. права
 implementation
 {$R *.dfm}
  uses data, AddGoods_U, EditGoods_U, EndProc_U, EditGoodsOut_U, Sold_U,
@@ -509,6 +512,13 @@ if Role = 'CUSTOMS' then
        MainToolBar.Enabled:=False;
        MainMenu1.Items[2].Enabled:=True;
   end;
+if (Pos('NOT_IN_REPORT',Rights) > 0 ) then
+  begin
+    PopMn_NotInReport.Enabled:=True;
+    PopMn_InReport.Enabled:=True;
+    PopMn_AllRecNotInReport.Enabled:=True;
+  end;
+
   StatusBar1.Panels[0].Text:=DM.DB.DatabaseName;
   StatusBar1.Panels[1].Text:='ѕользователь: '+ User +' –оль: '+Role;
   Grid_Decl.SetFocus;
@@ -680,7 +690,7 @@ end;
 
 end;
 
-procedure TMain_F.N17Click(Sender: TObject);
+procedure TMain_F.PopMn_NotInReportClick(Sender: TObject);
 var
   id_rec:Integer;
   Tempbookmark:TBookMark;
@@ -717,7 +727,7 @@ begin
   end;
 end;
 
-procedure TMain_F.N18Click(Sender: TObject);
+procedure TMain_F.PopMn_InReportClick(Sender: TObject);
 var
   id_rec:Integer;
   Tempbookmark:TBookMark;
@@ -754,6 +764,16 @@ begin
   end;
 
  end;
+
+procedure TMain_F.PopMn_AllRecNotInReportClick(Sender: TObject);
+begin
+  if DM.Qry_NotInReport.Active then DM.Qry_NotInReport.Close;
+  DM.Qry_NotInReport.Open;
+  Reports_F.Rep1.LoadFromFile('not_inreport.fr3');
+  Reports_F.Rep1.ShowProgress:=True;
+  Reports_F.Rep1.ShowReport();
+  DM.Qry_NotInReport.Close;
+end;
 
 procedure TMain_F.N221Click(Sender: TObject);
 begin

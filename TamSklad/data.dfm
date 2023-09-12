@@ -384,4 +384,24 @@ object DM: TDM
     Left = 192
     Top = 127
   end
+  object Qry_NotInReport: TIBQuery
+    Database = DB
+    Transaction = IBTR
+    BufferChunks = 1000
+    CachedUpdates = False
+    ParamCheck = True
+    SQL.Strings = (
+      
+        'select b.nomer_dt, a.name_goods,a.tnved_code, a.rest_kol,a.rest_' +
+        'weight,a.rest_stoim'
+      'from goods_header a left join decls b on a.id_decl = b.id'
+      'where a.not_report = 1')
+    Left = 304
+    Top = 264
+  end
+  object DS_NotInReport: TDataSource
+    DataSet = Qry_NotInReport
+    Left = 368
+    Top = 264
+  end
 end

@@ -45,6 +45,8 @@ type
     Ds_Settings: TDataSource;
     DS_CustProc: TDataSource;
     DS_Edizm: TDataSource;
+    Qry_NotInReport: TIBQuery;
+    DS_NotInReport: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
