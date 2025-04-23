@@ -108,6 +108,7 @@ type
   private
     { Private declarations }
     procedure SavePril3ToXML;
+    function Check_DogTS(Id:Integer):Boolean;
   public
     { Public declarations }
     IdTicket:Integer;
@@ -322,6 +323,11 @@ begin
      begin
       IdTicket:=Dm.Qry_FindParts.FieldByName('ID_TICKET').AsInteger;
       IdPart:=Dm.Qry_FindParts.FieldByName('ID_PART').AsInteger;
+      if not Check_DogTS(Dm.Qry_FindParts.FieldByName('ID').AsInteger) then
+      begin
+        Application.MessageBox('У выбранного получателя не заключен договор таможенного склада.','Внимание',MB_ICONSTOP+MB_Ok);
+        Exit;
+      end;
       AddDecl_F.ShowModal;
      end;
   if Dm.Qry_FindParts.Active then Dm.Qry_FindParts.Close;
@@ -456,6 +462,24 @@ begin
   Dm.RefreshGoods;
   DM.RefreshGoodsOut;
   Dm.RefreshGoodsSold;
+end;
+
+function TMain_F.Check_DogTS(Id: Integer): Boolean;
+var
+  qry:TIBQuery;
+begin
+  Result:=False;
+  try
+    qry:=TIBQuery.Create(Nil);
+    qry.Database:=DM.DB;
+    qry.Sql.Add('select count (*) from dogovors a where a.id_zayv =:p0 and a.num_dog containing :p1');
+    qry.Params[0].AsInteger:=Id;
+    qry.Params[1].AsString:='tc';
+    qry.Open;
+    if qry.Fields[0].AsInteger > 0 then Result:=True;
+  finally
+    qry.Free;
+  end;
 end;
 
 procedure TMain_F.EditGoodsOut_AExecute(Sender: TObject);

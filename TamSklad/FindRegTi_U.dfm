@@ -59,7 +59,6 @@ object FindRegTi_F: TFindRegTi_F
       DataSource = DM.Ds_FindParts
       DynProps = <>
       Flat = True
-      IndicatorOptions = [gioShowRowIndicatorEh]
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
       PopupMenu = PopupMenu1
       ReadOnly = True
@@ -67,6 +66,7 @@ object FindRegTi_F: TFindRegTi_F
       TitleParams.RowLines = 2
       Columns = <
         item
+          CellButtons = <>
           DynProps = <>
           EditButtons = <>
           FieldName = 'DT_IS'
@@ -77,6 +77,7 @@ object FindRegTi_F: TFindRegTi_F
         end
         item
           Alignment = taCenter
+          CellButtons = <>
           DynProps = <>
           EditButtons = <>
           FieldName = 'N_PART'
@@ -86,6 +87,7 @@ object FindRegTi_F: TFindRegTi_F
           Width = 102
         end
         item
+          CellButtons = <>
           DynProps = <>
           EditButtons = <>
           FieldName = 'ZAYV'
@@ -106,12 +108,12 @@ object FindRegTi_F: TFindRegTi_F
       DataSource = DM.Ds_Ts
       DynProps = <>
       Flat = True
-      IndicatorOptions = [gioShowRowIndicatorEh]
       TabOrder = 1
       TitleParams.RowLines = 2
       Columns = <
         item
           Alignment = taCenter
+          CellButtons = <>
           DynProps = <>
           EditButtons = <>
           FieldName = 'N_TS'
@@ -122,6 +124,7 @@ object FindRegTi_F: TFindRegTi_F
         end
         item
           Alignment = taCenter
+          CellButtons = <>
           DynProps = <>
           EditButtons = <>
           FieldName = 'N_TRAILER_HUMAN'
@@ -144,9 +147,6 @@ object FindRegTi_F: TFindRegTi_F
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
-    ExplicitLeft = 720
-    ExplicitTop = 8
-    ExplicitWidth = 150
     object ToolButton1: TToolButton
       Left = 0
       Top = 0

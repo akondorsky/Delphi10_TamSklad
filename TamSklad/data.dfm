@@ -328,7 +328,7 @@ object DM: TDM
     CachedUpdates = False
     ParamCheck = True
     SQL.Strings = (
-      'select a.zayv,a.inn,'
+      'select a.zayv,a.inn,a.id,'
       ' (iif (a.POSTCODE is not null, a.postcode, '#39#39'))||'#39' '#39'||'
       ' (iif (a.REGION is not null, a.REGION, '#39#39'))||'#39' '#39'||'
       ' (iif (a.CITY is not null, a.CITY, '#39#39'))||'#39' '#39'||'

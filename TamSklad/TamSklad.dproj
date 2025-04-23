@@ -246,13 +246,13 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="3">
-                <DeployFile LocalName="..\Debug\Win32\TamSklad.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="TamSklad.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>TamSklad.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="TamSklad.exe" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="..\Debug\Win32\TamSklad.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>TamSklad.exe</RemoteName>
                         <Overwrite>true</Overwrite>

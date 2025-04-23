@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, GridsEh,
   DBAxisGridsEh, DBGridEh, StdCtrls, ExtCtrls, DB, IBCustomDataSet, IBQuery,
-  ImgList, Menus, ComCtrls, ToolWin;
+  ImgList, Menus, ComCtrls, ToolWin, EhLibVCL;
 
 type
   TFindRegTi_F = class(TForm)
@@ -84,7 +84,7 @@ end;
 
 procedure TFindRegTi_F.FormCreate(Sender: TObject);
 begin
-     sel_body:=' select a.zayv,a.inn, ';
+     sel_body:=' select a.zayv,a.inn, a.id, ';
      sel_body:=sel_body+format(' (iif (a.POSTCODE is not null, a.postcode, %s%s))||%s %s|| ',[#39,#39,#39,#39]);
      sel_body:=sel_body+format(' (iif (a.REGION is not null, a.REGION, %s%s))||%s %s|| ',[#39,#39,#39,#39]);
      sel_body:=sel_body+format(' (iif (a.CITY is not null, a.CITY, %s%s))||%s %s|| ',[#39,#39,#39,#39]);
