@@ -5,7 +5,7 @@ uses
   Dialogs, ImgList, ToolWin, ComCtrls, Menus, ExtCtrls, DBGridEhGrouping,
   ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, GridsEh, DBAxisGridsEh, DBGridEh,
   ActnList, PlatformDefaultStyleActnCtrls, ActnMan, PropFilerEh, PropStorageEh,
-  IbQuery,DB, System.Actions, System.ImageList, EhLibVCL, Vcl.StdCtrls;
+  IBX.IBQuery,DB, System.Actions, System.ImageList, EhLibVCL, Vcl.StdCtrls;
 type
   TMain_F = class(TForm)
     MainMenu1: TMainMenu;

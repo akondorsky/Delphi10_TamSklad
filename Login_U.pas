@@ -4,8 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes,  Graphics,
-   Controls,  Forms,  Dialogs, DB, IBCustomDataSet, IBQuery,
-   StdCtrls,  DBCtrls,  Buttons,  Mask,  ExtCtrls, IBTable;
+   Controls,  Forms,  Dialogs, DB, IBX.IBCustomDataSet, IBX.IBQuery,
+   StdCtrls,  DBCtrls,  Buttons,  Mask,  ExtCtrls, IBX.IBTable;
 
 type
   TLogin_F = class(TForm)

@@ -1,32 +1,34 @@
 program TamSklad;
 
 uses
+  Vcl.Forms,
   Windows,
-  SysUtils,
-  Forms,
-  Main in 'Main.pas' {Main_F},
-  data in 'data.pas' {DM: TDataModule},
-  AddGoods_U in 'AddGoods_U.pas' {AddGoods_F},
-  Valname_U in 'Valname_U.pas' {Valname_F},
-  EditGoods_U in 'EditGoods_U.pas' {EditGoods_F},
-  EndProc_U in 'EndProc_U.pas' {EndProc_F},
-  EditGoodsOut_U in 'EditGoodsOut_U.pas' {EditGoodsOut_F},
-  Sold_U in 'Sold_U.pas' {Sold_F},
-  EditSold_U in 'EditSold_U.pas' {EditSold_F},
-  Splash_U in 'Splash_U.pas' {SplashForm},
-  RegtiDisp_U in 'RegtiDisp_U.pas' {RegtiDisp_F},
-  AddDecl_U in 'AddDecl_U.pas' {AddDecl_F},
-  Warehouse_U in 'Warehouse_U.pas' {Warehouse_F},
   ActInHeadEdit_U in 'ActInHeadEdit_U.pas' {ActInHeadEdit_F},
   ActInItemEdit_U in 'ActInItemEdit_U.pas' {ActInItemEdit_F},
   ActOutEdit_U in 'ActOutEdit_U.pas' {ActOutEdit_F},
-  FindRegTi_U in 'FindRegTi_U.pas' {FindRegTi_F},
-  SelectDates_U in 'SelectDates_U.pas' {SelectDates_F},
-  myutils in 'myutils.pas',
-  Login_U in 'Login_U.pas' {Login_F},
+  AddDecl_U in 'AddDecl_U.pas' {AddDecl_F},
+  AddGodds_U in 'AddGodds_U.pas' {AddGodds_F},
+  AddGoods_U in 'AddGoods_U.pas' {AddGoods_F},
   CustProc_U in 'CustProc_U.pas' {CustProc_F},
+  data in 'data.pas' {DM: TDataModule},
+  EditGoods_U in 'EditGoods_U.pas' {EditGoods_F},
+  EditGoodsOut_U in 'EditGoodsOut_U.pas' {EditGoodsOut_F},
+  EditSold_U in 'EditSold_U.pas' {EditSold_F},
+  Edizm_U in 'Edizm_U.pas' {Edizm_F},
+  EndProc_TS_U in 'EndProc_TS_U.pas' {EndProc_TS_F},
+  EndProc_U in 'EndProc_U.pas' {EndProc_F},
+  FindRegTi_U in 'FindRegTi_U.pas' {FindRegTi_F},
+  GoodsSold_U in 'GoodsSold_U.pas' {GoodsSold_F},
+  Login_U in 'Login_U.pas' {Login_F},
+  myutils in 'myutils.pas',
+  RegtiDisp_U in 'RegtiDisp_U.pas' {RegtiDisp_F},
   Reports_U in 'Reports_U.pas' {Reports_F},
-  Edizm_U in 'Edizm_U.pas' {Edizm_F};
+  SelectDates_U in 'SelectDates_U.pas' {SelectDates_F},
+  Sold_U in 'Sold_U.pas' {Sold_F},
+  Splash_U in 'Splash_U.pas' {SplashForm},
+  Valname_U in 'Valname_U.pas' {Valname_F},
+  Warehouse_U in 'Warehouse_U.pas' {Warehouse_F},
+  Main in 'Main.pas' {Main_F};
 
 {$R *.res}
  var
@@ -72,3 +74,4 @@ begin
   SplashForm.Free;
   Application.Run;
 end.
+

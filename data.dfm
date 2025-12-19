@@ -25,7 +25,6 @@ object DM: TDM
     Top = 16
   end
   object IBTR: TIBTransaction
-    Active = True
     DefaultDatabase = DB
     Params.Strings = (
       'read'
@@ -35,8 +34,7 @@ object DM: TDM
     Top = 16
   end
   object DB: TIBDatabase
-    Connected = True
-    DatabaseName = 'C:\FB_DB\SIRIUS_25.FDB'
+    DatabaseName = 'f:\FB_DB\SIRIUS_25.FDB'
     Params.Strings = (
       'user_name=sysdba'
       'password=mkey'
@@ -120,8 +118,7 @@ object DM: TDM
     DataSource = Ds_Goods
     ParamCheck = True
     SQL.Strings = (
-      'select a.*, iif(a.id_act_out is null,0,1) as ID_ACT_HUMAN'
-      '  from  GOODS_OUT_VW a'
+      'select a.*  from  GOODS_OUT_VW a'
       'where a.id_head=:id order by id')
     Left = 37
     Top = 192
@@ -232,7 +229,7 @@ object DM: TDM
       'select a.*, b.n_ticket||'#39'/'#39'||c.npp as n_part  from DECLS a'
       'left join ticket b on a.id_ticket = b.id'
       'left join ticket_parts c on a.id_part=c.id'
-      'order by a.ID DESC')
+      'order by a.DT DESC')
     Left = 37
     Top = 320
   end

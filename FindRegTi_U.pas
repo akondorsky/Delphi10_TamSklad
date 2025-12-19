@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, GridsEh,
-  DBAxisGridsEh, DBGridEh, StdCtrls, ExtCtrls, DB, IBCustomDataSet, IBQuery,
+  DBAxisGridsEh, DBGridEh, StdCtrls, ExtCtrls, DB, IBX.IBCustomDataSet, IBX.IBQuery,
   ImgList, Menus, ComCtrls, ToolWin, EhLibVCL;
 
 type

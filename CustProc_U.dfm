@@ -25,7 +25,6 @@ object CustProc_F: TCustProc_F
     DynProps = <>
     Flat = True
     FooterParams.Color = clWindow
-    IndicatorOptions = [gioShowRowIndicatorEh]
     OddRowColor = clWindow
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
     TabOrder = 0
@@ -33,15 +32,16 @@ object CustProc_F: TCustProc_F
     OnDblClick = Grid1DblClick
     Columns = <
       item
+        CellButtons = <>
         DynProps = <>
         EditButtons = <>
         FieldName = 'CODE_PROC'
         Footers = <>
         Title.Alignment = taCenter
         Title.Caption = #1050#1086#1076
-        Width = 50
       end
       item
+        CellButtons = <>
         DynProps = <>
         EditButtons = <>
         FieldName = 'NAME'

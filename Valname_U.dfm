@@ -25,7 +25,6 @@ object Valname_F: TValname_F
     DynProps = <>
     Flat = True
     FooterParams.Color = clWindow
-    IndicatorOptions = [gioShowRowIndicatorEh]
     OddRowColor = clWindow
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
     TabOrder = 0

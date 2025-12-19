@@ -73,7 +73,6 @@ object RegtiDisp_F: TRegtiDisp_F
     DynProps = <>
     Flat = True
     FooterParams.Color = clWindow
-    IndicatorOptions = [gioShowRowIndicatorEh]
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
     ParentShowHint = False
     ShowHint = True
@@ -83,6 +82,7 @@ object RegtiDisp_F: TRegtiDisp_F
     OnKeyDown = DBGridEh1KeyDown
     Columns = <
       item
+        CellButtons = <>
         DynProps = <>
         EditButtons = <>
         FieldName = 'VALID'
@@ -95,6 +95,7 @@ object RegtiDisp_F: TRegtiDisp_F
         Width = 39
       end
       item
+        CellButtons = <>
         DynProps = <>
         EditButtons = <>
         FieldName = 'ZAYV'
@@ -104,6 +105,7 @@ object RegtiDisp_F: TRegtiDisp_F
         Width = 275
       end
       item
+        CellButtons = <>
         DynProps = <>
         EditButtons = <>
         FieldName = 'INN'
@@ -114,6 +116,7 @@ object RegtiDisp_F: TRegtiDisp_F
       end
       item
         Alignment = taCenter
+        CellButtons = <>
         DynProps = <>
         EditButtons = <>
         FieldName = 'DISCOUNT'
@@ -123,6 +126,7 @@ object RegtiDisp_F: TRegtiDisp_F
         Width = 47
       end
       item
+        CellButtons = <>
         DynProps = <>
         EditButtons = <>
         FieldName = 'FULL_ADRESS'
@@ -178,7 +182,7 @@ object RegtiDisp_F: TRegtiDisp_F
     Left = 608
     Top = 8
     Bitmap = {
-      494C010101008400A00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010101008400040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

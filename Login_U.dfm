@@ -1,6 +1,7 @@
 object Login_F: TLogin_F
   Left = 0
   Top = 0
+  HelpType = htKeyword
   BorderIcons = []
   BorderStyle = bsSingle
   Caption = #1056#1077#1075#1080#1089#1090#1088#1072#1094#1080#1103' '#1087#1086#1083#1100#1079#1086#1074#1072#1090#1077#1083#1103
@@ -14,7 +15,7 @@ object Login_F: TLogin_F
   Font.Style = []
   FormStyle = fsStayOnTop
   OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow

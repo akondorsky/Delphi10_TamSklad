@@ -415,18 +415,6 @@ object Main_F: TMain_F
             Title.Alignment = taCenter
             Title.Caption = #1054#1089#1090#1072#1090#1086#1082' '#1074#1077#1089#1072
             Width = 87
-          end
-          item
-            CellButtons = <>
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'NOT_REPORT'
-            Footers = <>
-            ImageList = Iml_Minus
-            KeyList.Strings = (
-              '1')
-            Title.Alignment = taCenter
-            Title.Caption = #1042#1082#1083'. '#1074' '#1086#1090#1095#1077#1090
           end>
         object RowDetailData: TRowDetailPanelControlEh
         end

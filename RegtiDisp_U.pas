@@ -6,7 +6,8 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, PropFilerEh, PropStorageEh, Grids, DBGridEh, StdCtrls, Mask,
   ExtCtrls, ActnList, DBGridEhGrouping, GridsEh, ComCtrls, ToolWin, ImgList,
-  ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, DBAxisGridsEh,DB;
+  ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, DBAxisGridsEh,DB, System.ImageList,
+  System.Actions, EhLibVCL;
 
 type
   TRegtiDisp_F = class(TForm)

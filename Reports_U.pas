@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, frxClass, frxDBSet, DB, IBCustomDataSet, IBQuery, frxExportXLS,
+  Dialogs, frxClass, frxDBSet, DB, IBX.IBCustomDataSet, IBX.IBQuery, frxExportXLS,
   frxExportPDF, frxExportBaseDialog, Vcl.Grids, Vcl.DBGrids;
 
 type

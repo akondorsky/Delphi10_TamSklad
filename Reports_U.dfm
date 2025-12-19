@@ -61,7 +61,7 @@ object Reports_F: TReports_F
       '   or (cast(a.dt as date) between :p1 and :p2)'
       '   or (cast (b.dt_out as date) between :p3 and :p4)'
       '   or (c.date_doc between :p5 and :p6 )'
-      'order by a.id_decl, a.n_goods')
+      'order by d.dt, a.id_decl, a.n_goods')
     Left = 101
     Top = 72
     ParamData = <

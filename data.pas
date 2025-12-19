@@ -3,7 +3,7 @@ unit data;
 interface
 
 uses
-  SysUtils, Classes, DB, IBDatabase, IBSQL,IbQuery, IBCustomDataSet,IB,Dialogs,Forms;
+  SysUtils, Classes, DB, IBX.IBDatabase, IBX.IBSQL,IBX.IbQuery, IBX.IBCustomDataSet,IBX.IB,Dialogs,Forms;
 
 type
   TDM = class(TDataModule)

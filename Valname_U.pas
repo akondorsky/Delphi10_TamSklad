@@ -1,16 +1,16 @@
-unit CustProc_U;
+unit Valname_U;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh, GridsEh,
-  DBAxisGridsEh, DBGridEh;
+  DBAxisGridsEh, DBGridEh, EhLibVCL;
 
 type
-  TCustProc_F = class(TForm)
-    Grid1: TDBGridEh;
-    procedure Grid1DblClick(Sender: TObject);
+  TValname_F = class(TForm)
+    Grid_Ticket: TDBGridEh;
+    procedure Grid_TicketDblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -18,14 +18,14 @@ type
   end;
 
 var
-  CustProc_F: TCustProc_F;
+  Valname_F: TValname_F;
 
 implementation
 
 {$R *.dfm}
-uses main,data;
+uses data;
 
-procedure TCustProc_F.Grid1DblClick(Sender: TObject);
+procedure TValname_F.Grid_TicketDblClick(Sender: TObject);
 begin
   ModalResult:=mrOk;
 end;

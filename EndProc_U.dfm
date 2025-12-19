@@ -217,7 +217,6 @@ object EndProc_F: TEndProc_F
     Font.Style = []
     MaxLength = 255
     ParentFont = False
-    ReadOnly = True
     TabOrder = 1
   end
   object E_Dt: TDBDateTimeEditEh

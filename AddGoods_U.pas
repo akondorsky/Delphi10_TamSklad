@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, ComCtrls, StdCtrls, ExtCtrls, Mask, DBCtrlsEh, Buttons, AdvDropDown,
-  AdvMultiColumnDropDown,IbQuery,Db,DateUtils, DBGridEhGrouping, ToolCtrlsEh,
+  AdvMultiColumnDropDown,IBX.IBQuery,Db,DateUtils, DBGridEhGrouping, ToolCtrlsEh,
   DBGridEhToolCtrls, DynVarsEh, GridsEh, DBAxisGridsEh, DBGridEh;
 
 type
